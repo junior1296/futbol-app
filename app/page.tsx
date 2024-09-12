@@ -1,4 +1,4 @@
-import Image from "next/image";
+//import Image from "next/image";
 
 const CHANNELS = [
   {
@@ -93,27 +93,45 @@ const CHANNELS = [
   }
 ]
 
-const navigation = [
+/* const navigation = [
   { name: 'Product', href: '#' },
   { name: 'Features', href: '#' },
   { name: 'Marketplace', href: '#' },
   { name: 'Company', href: '#' },
-]
+] */
 
 const getVideo = (embed: string) => {
   const value: string = embed.toLowerCase().trim()
-  const url_video: string = 'https://la10hd.com/vivo/canal.php?stream='
+  //const url_video: string = 'https://la10hd.com/vivo/canal.php?stream='
 
   return CHANNELS.find(stream => stream.name == value)?.stream
 }
 
-export default async function Home() {
-  let URL_BASE = 'https://futbollibrehd.pe'
-  let data = await fetch('https://corsproxy.io/?url=https://futbollibrehd.pe/agenda.json')
-  let posts = await data.json()
-  
-  let URL_CHANNEL = 'https://la10hd.com/vivo/canal.php?stream='
+interface Post {
+  id: string;
+  attributes: {
+    diary_hour: string;
+    diary_description: string;
+    date_diary: string;
+    embeds: {
+      data: [];
+    }
+  };
+}
 
+interface Embed {
+  id: string;
+  attributes: {
+    embed_name: string;
+    embed_iframe: string;
+  };
+}
+
+export default async function Home() {
+  //const URL_BASE = 'https://futbollibrehd.pe'
+  const data = await fetch('https://corsproxy.io/?url=https://futbollibrehd.pe/agenda.json')
+  const posts = await data.json()
+  
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <header className="row-start-1">
@@ -132,7 +150,7 @@ export default async function Home() {
       </header>
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <ul role="list" className="divide-y divide-gray-100">
-          {posts.data.map((post) => (
+          {posts.data.map((post: Post) => (
             <li key={post.id} className="flex flex-col justify-between gap-x-6 gap-y-6 py-5">
               <div className="flex flex-row gap-x-8 justify-between">
                 <p>{post.attributes.diary_description}</p>
@@ -142,7 +160,7 @@ export default async function Home() {
                 </div>
               </div>
               <ul className="flex flex-row gap-x-8">
-                {post.attributes.embeds.data.map((embed) => (
+                {post.attributes.embeds.data.map((embed: Embed) => (
                   <li key={embed.attributes.embed_name} className="flex items-center gap-x-6 bg-gray-600 rounded">
                     <a href={getVideo(embed.attributes.embed_name)} target="_blank" className="p-2">
                       {embed.attributes.embed_name}
@@ -154,8 +172,8 @@ export default async function Home() {
           ))}
         </ul>
       </main>
-      <aside className="row-start-3 flex flex-row gap-6 items-center justify-center">
-          <ul className="flex flex-row gap-8">
+      <aside className="row-start-3 flex flex-col gap-8 items-center justify-center">
+          <ul className="flex flex-row flex-wrap gap-6 items-center justify-center">
             {CHANNELS.map((embed) => (
               <li key={embed.name} className="flex items-center gap-x-6 bg-gray-600 rounded">
                 <a href={embed.stream} target="_blank" className="p-2">
@@ -165,7 +183,7 @@ export default async function Home() {
             ))}
           </ul>
       </aside>
-      <footer className="row-start-4 flex gap-6 flex-wrap items-center justify-center">
+      <footer className="row-start-4 flex gap-8 flex-wrap items-center justify-center">
         <p>Hecho por Junior Mejia Osorio</p>
       </footer>
     </div>
