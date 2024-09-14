@@ -17,10 +17,10 @@ export async function getVideoHsl(url: string) {
     const scripts = $('script').toString();
 
     if(scripts.includes('source: "')) {
-      source = scripts.split('source: "')[1].split('",')[0]
+      source = scripts.split('source: "')[1].split('"')[0]
     }
     if(scripts.includes('file: "')) {
-      source = scripts.split('file: "')[1].split('",')[0]
+      source = scripts.split('file: "')[1].split('"')[0]
     }
     console.log("Source: " + source)
   } catch (e) {

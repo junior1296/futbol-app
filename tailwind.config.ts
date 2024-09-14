@@ -15,5 +15,6 @@ const config: Config = {
     },
   },
   plugins: [],
+  //plugins: [require('@vidstack/react/tailwind.cjs')],
 };
 export default config;
