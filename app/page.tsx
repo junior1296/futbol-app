@@ -21,13 +21,14 @@ const getVideoEmbed = (embed: string) => {
 }
 
 const goToChannel = (embed_iframe: string) => {
-  console.log("IFRAME: " + getVideoEmbed(embed_iframe))
+  console.log("IFRAME: " + embed_iframe)
   let value: string = ""
-  if (getVideoEmbed(embed_iframe).includes("/mpd")) {
-    value = `${getVideoEmbed(embed_iframe)}`
+  /* if (embed_iframe.includes("/mpd")) {
+    value = embed_iframe
   } else {
-    value = `/channel?url=${getVideoEmbed(embed_iframe)}`
-  }
+    value = `/channel?url=${embed_iframe}`
+  } */
+  value = embed_iframe
   console.log(value)
   
   return value
@@ -79,7 +80,7 @@ export default async function Home() {
               <ul className="flex flex-row flex-wrap gap-4">
                 {post.attributes.embeds.data.map((embed: Embed) => (
                   <li key={embed.attributes.embed_name} className="p-2 bg-orange-400 rounded">
-                    <Link href={goToChannel(embed.attributes.embed_iframe)} className="p-2">
+                    <Link href={goToChannel(getVideoEmbed(embed.attributes.embed_iframe))} className="p-2">
                       {embed.attributes.embed_name}
                     </Link>
                   </li>
@@ -100,7 +101,7 @@ export default async function Home() {
                     height={80}
                   />
               <p className="text-white font-semibold">{embed.name}</p>
-              <Link href={`/channel?url=${embed.stream}`} className="p-2 bg-orange-400 rounded">
+              <Link href={`${goToChannel(embed.stream)}`} className="p-2 bg-orange-400 rounded">
                 Ver canal
               </Link>
             </li>
