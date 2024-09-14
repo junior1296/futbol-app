@@ -27,8 +27,9 @@ export default async function VideoHSL(
           aspectRatio="16/9"
           //streamType="live"
           //viewType='video'
+          crossOrigin
           controls
-          autoPlay={true}
+          autoPlay
         >
           <MediaProvider />
         </MediaPlayer>
