@@ -39,8 +39,16 @@ const getImage = (imageUri: string) => {
 
 export default async function Home() {
   //const data = await fetch('https://corsproxy.io/?url=https://futbollibrehd.pe/agenda.json')
-  const data = await fetch('https://futbollibrehd.pe/agenda.json')
-  const posts = await data.json()
+  const res = await fetch('https://futbollibrehd.pe/agenda.json', {
+    headers: {
+      "Referer": "https://futbollibretv.pe/"
+    }
+  })
+  const data: { data: Post[] } = await res.json()
+  //const posts = await getPosts()
+  const posts = data?.data.sort((a: Post, b: Post) => {
+    return new Date(`${a.attributes.date_diary} ${a.attributes.diary_hour}`).getTime() - new Date(`${b.attributes.date_diary} ${b.attributes.diary_hour}`).getTime();
+  });
   
   return (
     <div className="grid grid-row-4 min-h-screen gap-8 md:px-20 font-[family-name:var(--font-geist-sans)]">
@@ -51,7 +59,7 @@ export default async function Home() {
       </header>
       <main className="flex flex-col gap-8 justify-between px-8">
         <ul role="list" className="divide-y divide-gray-100">
-          {posts?.data?.map((post: Post) => (
+          {posts?.map((post: Post) => (
             <li key={post.id} className="flex flex-col justify-between gap-4 py-6">
               <div className="flex flex-row gap-x-6 justify-between items-center">
                 <div className="flex flex-row gap-x-6 items-center">
