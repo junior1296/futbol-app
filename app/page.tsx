@@ -14,7 +14,7 @@ import { getImage, getVideoEmbed, goToChannel } from "./utils/utils";
 //const URL_BASE = 'https://futbollibrehd.pe'
 
 export default async function Home() {
-  const data: Post[] = await getPosts()
+  const data: Post[] = await getPosts();
   //console.log(data)
   const posts = data?.sort((a: Post, b: Post) => {
     return new Date(`${a.attributes.date_diary} ${a.attributes.diary_hour}`).getTime() - new Date(`${b.attributes.date_diary} ${b.attributes.diary_hour}`).getTime();
