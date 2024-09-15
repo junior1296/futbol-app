@@ -5,7 +5,6 @@
 //import { MediaPlayer, MediaProvider } from '@vidstack/react';
 import Video from 'next-video'
 import { getVideoHsl } from '../lib/scrape';
-import { headers } from 'next/headers';
 
 //const URL_VIDEO = 'https://c2f2zq.la10tv.com:443/lb/dsports2/index.m3u8?token=9aaf9160866bc16d4d59ab3e7d3126eca2f7b3de-fdc1eb93772e210e97c581a78590b633-1726221579-1726185579&remote=190.235.163.215'
 
