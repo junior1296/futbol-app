@@ -42,8 +42,9 @@ export default async function Home() {
   //const data = await fetch('https://corsproxy.io/?url=https://futbollibrehd.pe/agenda.json')
   const res = await fetch('https://futbollibrehd.pe/agenda.json', {
     headers: {
-      "Referer": "https://futbollibretv.pe/"
-    }
+      //'Referer': 'https://futbollibretv.pe/',
+      'Cache-Control': 'no-store', // Desactiva la caché en la solicitud
+    },
   })
   const data: { data: Post[] } = await res.json()
   //const posts = await getPosts()
