@@ -1,9 +1,9 @@
-//import Image from "next/image";
-
 import Link from "next/link";
 import { Embed, Post } from "./lib/definitions";
 import { CHANNELS } from "./lib/data";
 import Image from "next/image";
+import { getPosts } from "./lib/api";
+import { getImage, getVideoEmbed, goToChannel } from "./utils/utils";
 
 /* const navigation = [
   { name: 'Product', href: '#' },
@@ -13,42 +13,10 @@ import Image from "next/image";
 ] */
 //const URL_BASE = 'https://futbollibrehd.pe'
 
-const getVideoEmbed = (embed: string) => {
-  const value: string = atob(embed.split("?r=")[1])
-  //const url_video: string = 'https://la10hd.com/vivo/canal.php?stream='
-  console.log(value)
-  return value
-}
-
-const goToChannel = (embed_iframe: string) => {
-  console.log("IFRAME: " + embed_iframe)
-  let value: string = ""
-  /* if (embed_iframe.includes("/mpd")) {
-    value = embed_iframe
-  } else {
-    value = `/channel?url=${embed_iframe}`
-  } */
-  value = embed_iframe
-  console.log(value)
-  
-  return value
-}
-
-const getImage = (imageUri: string) => {
-  return `https://img.futbollibrehd.pe${imageUri}`
-}
-
 export default async function Home() {
-  //const data = await fetch('https://corsproxy.io/?url=https://futbollibrehd.pe/agenda.json')
-  const res = await fetch('https://futbollibrehd.pe/agenda.json', {
-    headers: {
-      //'Referer': 'https://futbollibretv.pe/',
-      'Cache-Control': 'no-store', // Desactiva la caché en la solicitud
-    },
-  })
-  const data: { data: Post[] } = await res.json()
-  //const posts = await getPosts()
-  const posts = data?.data.sort((a: Post, b: Post) => {
+  const data: Post[] = await getPosts()
+  //console.log(data)
+  const posts = data?.sort((a: Post, b: Post) => {
     return new Date(`${a.attributes.date_diary} ${a.attributes.diary_hour}`).getTime() - new Date(`${b.attributes.date_diary} ${b.attributes.diary_hour}`).getTime();
   });
   

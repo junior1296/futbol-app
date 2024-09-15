@@ -2,7 +2,7 @@ import * as cheerio from 'cheerio';
 
 export async function getVideoHsl(url: string) {
   let source: string = ''
-  console.log("Embed: " + url)
+  console.log("EMBED: " + url)
   try {
     // Fetch the HTML content of the web page to be scraped
     const response = await fetch(url);
@@ -22,7 +22,10 @@ export async function getVideoHsl(url: string) {
     if(scripts.includes('file: "')) {
       source = scripts.split('file: "')[1].split('"')[0]
     }
-    console.log("Source: " + source)
+    if(scripts.includes('playbackURL = "')) {
+      source = scripts.split('playbackURL = "')[1].split('"')[0]
+    }
+    console.log("SOURCE: " + source)
   } catch (e) {
     console.error(e)
   }

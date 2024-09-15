@@ -20,3 +20,28 @@ export const getSlug = (embed: string) => {
   console.log(value)
   return value// ? URL_VIDEO : ''
 }
+
+export const getImage = (imageUri: string) => {
+  return `https://img.futbollibrehd.pe${imageUri}`
+}
+
+export const getVideoEmbed = (embed: string) => {
+  const value: string = atob(embed.split("?r=")[1])
+  //const url_video: string = 'https://la10hd.com/vivo/canal.php?stream='
+  //console.log(value)
+  return value
+}
+
+export const goToChannel = (embed_iframe: string) => {
+  //console.log("IFRAME: " + embed_iframe)
+  let value: string = ""
+  if (embed_iframe.includes("/mpd")) {
+    value = embed_iframe
+  } else {
+    value = `/channel?url=${embed_iframe}`
+  }
+  //value = embed_iframe
+  //value = `/channel?url=${embed_iframe}`
+  //console.log(value)
+  return value
+}
