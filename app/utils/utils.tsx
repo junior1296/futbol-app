@@ -35,12 +35,12 @@ export const getVideoEmbed = (embed: string) => {
 export const goToChannel = (embed_iframe: string) => {
   //console.log("IFRAME: " + embed_iframe)
   let value: string = ""
-  if (embed_iframe.includes("/mpd")) {
+  /* if (embed_iframe.includes("/mpd")) {
     value = embed_iframe
   } else {
     value = `/channel?url=${embed_iframe}`
-  }
-  //value = embed_iframe
+  } */
+  value = embed_iframe
   //value = `/channel?url=${embed_iframe}`
   //console.log(value)
   return value
