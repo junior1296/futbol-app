@@ -1,15 +1,11 @@
-'use server'
+import { getOrderedPostsByDate } from "../utils/utils"
 
 export async function getPosts() {
+  /* const res = await fetch('https://futbollibrehd.pe/agenda.json', { */
   const res = await fetch('https://corsproxy.io/?url=https://futbollibrehd.pe/agenda.json', {
-    cache: 'no-store'
+    //cache: 'no-store', // no almacenar cache
+    next: { revalidate: 3600 } // cada hora
   })
-  /* const res = await fetch('https://futbollibrehd.pe/agenda.json', {
-    headers: {
-      'Referer': 'https://futbollibretv.pe/',
-      'Cache-Control': 'no-store', // Desactiva la caché en la solicitud
-    },
-  }) */
   const posts = await res.json()
-  return posts.data
+  return getOrderedPostsByDate(posts.data)
 }
