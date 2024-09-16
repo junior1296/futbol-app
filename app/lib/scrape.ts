@@ -5,16 +5,7 @@ export async function getVideoUriFromVideoEmbed(url: string) {
   console.log('EMBED: ' + url)
   try {
     // Fetch the HTML content of the web page to be scraped
-    const response = await fetch(url, {
-      headers: {
-        "Origin": "https://la10hd.com",
-        "Referer": "https://la10hd.com",
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-        'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Mobile Safari/537.36'
-      }
-    });
+    const response = await fetch(url);
     //console.log(response)
     const html = await response.text();
     //console.log(html)
