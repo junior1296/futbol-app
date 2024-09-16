@@ -1,5 +1,5 @@
 import { getVideoUriFromVideoEmbed } from '../lib/scrape';
-import VideoPlayer from '../ui/video'
+//import VideoPlayer from '../ui/video'
 import HslPlayer from '@/app/ui/HslPlayer'
 
 export default async function Channel(
