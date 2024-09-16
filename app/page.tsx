@@ -15,7 +15,6 @@ export default async function Home() {
         </a>
       </header>
       <main className='flex flex-col gap-y-8 px-4 md:px-8'>
-      <PostsSkeleton />
         <Suspense fallback={<PostsSkeleton />}>
           <Posts />
         </Suspense>
