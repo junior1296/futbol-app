@@ -9,6 +9,10 @@ export async function getVideoUriFromVideoEmbed(url: string) {
       headers: {
         "Origin": "https://la10hd.com",
         "Referer": "https://la10hd.com",
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Mobile Safari/537.36'
       }
     });
     //console.log(response)
@@ -32,14 +36,14 @@ export async function getVideoUriFromVideoEmbed(url: string) {
     }
     console.log('SOURCE: ' + source)
     
-    const responseSource = await fetch(source, {
+    /* const responseSource = await fetch(source, {
       headers: {
         "Origin": "https://la10hd.com",
         "Referer": "https://la10hd.com",
       }
     })
-    console.log('URL: ' + responseSource.url)
-    source = responseSource.url
+    console.log('URL: ' + responseSource.url) 
+    source = responseSource.url */
   } catch (e) {
     console.error(e)
   }
