@@ -6,10 +6,9 @@ export async function getVideoUriFromVideoEmbed(url: string) {
   try {
     // Fetch the HTML content of the web page to be scraped
     const response = await fetch(url, {
-      method: 'GET',
       headers: {
-        "Access-Control-Allow-Origin": "*",
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36"
+        "Origin": "https://la10hd.com",
+        "Referer": "https://la10hd.com",
       }
     });
     //console.log(response)
@@ -32,6 +31,15 @@ export async function getVideoUriFromVideoEmbed(url: string) {
       source = scripts.split('playbackURL = "')[1].split('"')[0]
     }
     console.log('SOURCE: ' + source)
+    
+    const responseSource = await fetch(source, {
+      headers: {
+        "Origin": "https://la10hd.com",
+        "Referer": "https://la10hd.com",
+      }
+    })
+    console.log('URL: ' + responseSource.url)
+    source = responseSource.url
   } catch (e) {
     console.error(e)
   }
