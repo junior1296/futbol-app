@@ -11,7 +11,13 @@ export default function VideoPlayer({src}: {src: string}) {
     const video: HTMLMediaElement = videoRef.current;
     
       if (Hls.isSupported()) {
-        const hls = new Hls();
+        const hls = new Hls({
+          xhrSetup: (xhr, url) => {
+            // Aquí puedes agregar los headers personalizados
+            //xhr.setRequestHeader('Authorization', 'Bearer tu_token_aqui');
+            //xhr.setRequestHeader('Custom-Header', 'Valor-Personalizado');
+          },
+        });
         hls.loadSource(src);
         hls.attachMedia(video);
       } else if (video.canPlayType('application/vnd.apple.mpegurl')) {

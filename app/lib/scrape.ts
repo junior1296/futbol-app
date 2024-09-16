@@ -5,7 +5,13 @@ export async function getVideoUriFromVideoEmbed(url: string) {
   console.log('EMBED: ' + url)
   try {
     // Fetch the HTML content of the web page to be scraped
-    const response = await fetch(url);
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36"
+      }
+    });
     //console.log(response)
     const html = await response.text();
     //console.log(html)
