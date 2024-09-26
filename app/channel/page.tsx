@@ -1,6 +1,6 @@
-import { getVideoUriFromVideoEmbed } from '../lib/scrape';
-//import VideoPlayer from '../ui/video'
+import { getVideoUriFromVideoEmbed } from '@/app/lib/scrape';
 import HslPlayer from '@/app/ui/HslPlayer'
+//import VideoPlayer from '@/app/ui/VideoPlayer';
 
 export default async function Channel(
   { params, searchParams }: { params: { slug: string; }, searchParams?: { url?: string; } }
@@ -10,11 +10,13 @@ export default async function Channel(
   //const src = await getVideoHsl(getVideo(params?.slug))
   const src = await getVideoUriFromVideoEmbed(searchParams?.url || '')
 
-  return(
-    <div className=''>
-      {/* <VideoPlayer src={src} /> */}
-      {/* <HslPlayer src={'https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8'} /> */}
-      <HslPlayer src={src} />
+  if (src === '') { return (
+    <div className='h-screen w-screen max-h-screen min-h-screen flex flex-row justify-center items-center'>
+      <p className=''>Video no disponible.</p>
     </div>
+  ) }
+
+  return(
+    <HslPlayer src={src} />
   )
 }   

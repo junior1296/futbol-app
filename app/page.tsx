@@ -11,7 +11,7 @@ export default async function Home() {
     <div className='grid grid-row-4 min-h-screen max-w-screen-lg m-auto font-[family-name:var(--font-geist-sans)] bg-zinc-950'>
       <header className='p-6 md:p-8 m-auto'>
         <a href='/' className='text-lg font-semibold leading-1'>
-          Futbol App
+          Jfutbol
         </a>
       </header>
       <main className='flex flex-col gap-y-8 px-4 md:px-8'>

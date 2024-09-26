@@ -14,7 +14,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'Futbol App',
+  title: 'Jfutbol',
   description: 'Es un sitio web para ver tus partidos de futbol online desde cualquier dispositivo.',
 };
 

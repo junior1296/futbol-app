@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 import Hls from 'hls.js';
 
-export default function VideoPlayer({src}: {src: string}) {
+export default function HslPlayer({src}: {src: string}) {
   const videoRef = useRef(null);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export default function VideoPlayer({src}: {src: string}) {
 
   return (
     <div>
-      <video className='h-screen max-h-screen w-full aspect-video' ref={videoRef} controls autoPlay>
+      <video className='h-screen min-h-screen max-h-screen w-screen' ref={videoRef} controls autoPlay>
         Tu navegador no soporta HLS.
       </video>
     </div>
