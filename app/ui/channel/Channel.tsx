@@ -10,11 +10,14 @@ export default function Channels () {
         {CHANNELS.map((embed) => (
           <li key={embed.name} className='flex flex-col items-center gap-2 p-4 bg-zinc-900 rounded'>
             <Image
-                  src={embed.image}
-                  alt={embed.name}
-                  width={80}
-                  height={80}
-                />
+                src={embed.image}
+                alt={embed.name}
+                width={80}
+                height={80}
+                loading="lazy" // Carga diferida para mejorar rendimiento
+                quality={75} // Reduce la calidad de la imagen (opcional, ajusta según tus necesidades)
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // Optimización para diferentes pantallas
+              />
             <p className='text-white font-semibold text-center'>{embed.name}</p>
             <Link href={`${goToChannel(embed.stream)}`} className='p-2 bg-zinc-950 rounded hover:bg-zinc-800'>
               Ver canal
